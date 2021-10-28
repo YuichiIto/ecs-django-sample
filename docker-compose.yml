@@ -3,10 +3,13 @@ version: '3'
 services:
   db:
     image: postgres
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: 'trust'
   web:
     build: .
     command: >
-      bash -c "pip install -r requirements.txt &&
+      bash -c "python -m pip install --upgrade pip &&
+      pip install -r requirements.txt &&
       python manage.py migrate &&
       python manage.py createsuperuser &&
       python manage.py runserver 0.0.0.0:8000"
