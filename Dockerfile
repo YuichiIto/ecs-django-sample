@@ -25,3 +25,4 @@ RUN \
 
 # カレントディレクトリのファイル/フォルダをDockerコンテナへコピー
 ADD . /code/
+ADD run-app.sh /code/run-app.sh

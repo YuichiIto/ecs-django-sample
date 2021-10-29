@@ -3,18 +3,21 @@ version: '3'
 services:
   # Docker Hubにあるpostgresqlイメージからコンテナを作る
   db:
+    network_mode: host
     image: postgres
+    container_name: db-container
+    ports:
+      - '5432:5432'
     environment:
       POSTGRES_HOST_AUTH_METHOD: 'trust'
   # カレントディレクトリにあるDockerfileからコンテナを作る
   web:
+    network_mode: host
     build: .
+    image: web-django
+    container_name: web-container
     # djangoの初期設定と起動
-    command: >
-      sh -c "pip install -r requirements.txt &&
-      python manage.py migrate &&
-      python manage.py custom_createsuperuser --username admin --email admin@example.com --password admin &&
-      python manage.py runserver 0.0.0.0:80"
+    command: sh run-app.sh
     # ホストPCの80番ポートにデータが来た時、Dockerコンテナの80番ポートにデータを回すように設定
     ports:
       - "80:80"
