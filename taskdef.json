@@ -1,0 +1,10 @@
+[
+  {
+    "name": "web",
+    "imageUri": "AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/ECS_WEB_CONTAINER_NAME"
+  },
+  {
+    "name": "db",
+    "imageUri": "AWS_ACCOUNT_ID.dkr.ecr.ap-northeast-1.amazonaws.com/ECS_DB_CONTAINER_NAME"
+  }
+]
